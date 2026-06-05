@@ -41,7 +41,7 @@ function Logo({ dark, sm }){
 window.Logo = Logo;
 
 // ============ Navbar ============
-function Navbar({ onGoTesis }){
+function Navbar(){
   const [top, setTop] = useState(true);
   const [menu, setMenu] = useState(false);
   useEffect(()=>{
@@ -49,17 +49,19 @@ function Navbar({ onGoTesis }){
     window.addEventListener('scroll', f); f();
     return ()=> window.removeEventListener('scroll', f);
   },[]);
+  const pg = window.location.pathname.split('/').pop() || 'index.html';
   const links = [
-    ["Inicio","#inicio"],["Servicios","#servicios"],["Asesoría de Tesis","#tesis"],
-    ["Proceso","#proceso"],["Contacto","#contacto"]
+    ["Inicio","index.html"],["Servicios","servicios.html"],["Asesoría de Tesis","tesis.html"],
+    ["Nosotros","nosotros.html"],["Contacto","contacto.html"]
   ];
+  function active(href){ return pg===href||(href==='index.html'&&(pg===''||pg==='/')); }
   return (
     <>
       <nav className={"nav"+(top?" top":"")}>
         <div className="wrap nav-inner">
-          <a href="#inicio"><Logo /></a>
+          <a href="index.html"><Logo /></a>
           <div className="nav-links">
-            {links.map(l=> <a key={l[1]} href={l[1]}>{l[0]}</a>)}
+            {links.map(l=> <a key={l[1]} href={l[1]} className={active(l[1])?"active":""}>{l[0]}</a>)}
           </div>
           <div className="nav-cta">
             <a className="btn btn-red" href={waLink("Hola Grupo ASES 👋, quiero más información sobre sus servicios.")} target="_blank" rel="noopener">
@@ -72,7 +74,7 @@ function Navbar({ onGoTesis }){
       <div className={"mobile-menu"+(menu?" open":"")} onClick={()=>setMenu(false)}>
         <div className="mm-panel" onClick={e=>e.stopPropagation()}>
           <button className="mm-close" onClick={()=>setMenu(false)}><Icon n="close" /></button>
-          {links.map(l=> <a key={l[1]} href={l[1]} onClick={()=>setMenu(false)}>{l[0]}</a>)}
+          {links.map(l=> <a key={l[1]} href={l[1]} onClick={()=>setMenu(false)} className={active(l[1])?"active":""}>{l[0]}</a>)}
           <a className="btn btn-wa" style={{marginTop:14,justifyContent:'center'}} href={waLink("Hola Grupo ASES 👋")} target="_blank" rel="noopener"><Icon n="whatsapp" /> WhatsApp</a>
         </div>
       </div>
@@ -82,7 +84,7 @@ function Navbar({ onGoTesis }){
 window.Navbar = Navbar;
 
 // ============ Hero ============
-function Hero({ onGoTesis }){
+function Hero(){
   return (
     <header className="hero" id="inicio">
       <div className="hero-bg">
@@ -95,8 +97,8 @@ function Hero({ onGoTesis }){
           <h1 style={{marginTop:18}}>Soluciones <span className="hl">integrales</span> para personas y empresas.</h1>
           <p className="hero-sub">Un equipo de profesionales especializados a tu servicio. Asesoría de tesis, legal, contable y de marketing — <b>todo lo que necesitas, en un solo lugar.</b></p>
           <div className="hero-cta">
-            <button className="btn btn-red btn-lg" onClick={onGoTesis}><Icon n="cap" /> Asesoría de Tesis</button>
-            <a className="btn btn-ghost btn-lg" href="#servicios"><Icon n="arrow" /> Ver servicios</a>
+            <a className="btn btn-red btn-lg" href="tesis.html"><Icon n="cap" /> Asesoría de Tesis</a>
+            <a className="btn btn-ghost btn-lg" href="servicios.html"><Icon n="arrow" /> Ver servicios</a>
           </div>
           <div className="hero-trust">
             <div className="t"><b>+5,000</b><span>Clientes satisfechos</span></div>
@@ -114,6 +116,7 @@ function Hero({ onGoTesis }){
               <div className="hv-item"><span className="ic"><Icon n="chart" /></span> Asesoría estadística</div>
               <div className="hv-item"><span className="ic"><Icon n="shield" /></span> Originalidad y antiplagio</div>
             </div>
+            <a className="btn btn-red" href="tesis.html" style={{marginTop:20,justifyContent:'center'}}><Icon n="arrow" /> Explorar carreras</a>
           </div>
           <div className="hv-float f1"><div><div className="num">6</div><small>Universidades<br/>de Chiclayo</small></div></div>
           <div className="hv-float f2"><span className="ic" style={{background:'var(--red)',width:36,height:36,borderRadius:10,display:'flex',alignItems:'center',justifyContent:'center'}}><Icon n="star" style={{width:18,color:'#fff'}}/></span><div><div className="num" style={{fontSize:18}}>4.9/5</div><small>Calificación</small></div></div>
@@ -141,7 +144,7 @@ function Marquee(){
 window.Marquee = Marquee;
 
 // ============ Servicios ============
-function Servicios({ onGoTesis }){
+function Servicios(){
   useReveal();
   const otros = [
     { ic:"scale", t:"Asesoría Legal", d:"Soluciones legales confiables y efectivas para personas y empresas." },
@@ -159,19 +162,19 @@ function Servicios({ onGoTesis }){
           <p>Profesionales especializados en cada área. Hoy destacamos nuestra <b>Asesoría de Tesis</b>, el servicio favorito de los universitarios de Chiclayo.</p>
         </div>
         <div className="serv-grid">
-          <div className="serv-card feature reveal" style={{cursor:'pointer'}} onClick={onGoTesis}>
+          <a className="serv-card feature reveal" href="tesis.html">
             <span className="serv-tag">Destacado</span>
             <div className="serv-ic"><Icon n="cap" /></div>
             <h3>Asesoría de Tesis</h3>
             <p>Te acompañamos desde el proyecto hasta la sustentación. Explora las <b>6 universidades de Chiclayo</b> y todas sus carreras, y arma tu plan a medida.</p>
             <div className="serv-link">Explorar mi carrera <Icon n="arrow" /></div>
-          </div>
+          </a>
           {otros.map((s,i)=>(
-            <div className="serv-card reveal" key={s.t} style={{animationDelay:(i*60)+'ms'}}>
+            <a className="serv-card reveal" key={s.t} href="servicios.html" style={{animationDelay:(i*60)+'ms'}}>
               <div className="serv-ic"><Icon n={s.ic} /></div>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
-            </div>
+            </a>
           ))}
         </div>
       </div>
