@@ -6,7 +6,7 @@ window.UNIVERSIDADES = [
     sigla: "UNPRG",
     nombre: "Univ. Nacional Pedro Ruiz Gallo",
     tipo: "Pública",
-    ciudad: "Lambayeque · Chiclayo",
+    ciudad: "Lambayeque",
     color: "#1f4e8c",
     logo: "img/unprg.png",
     facultades: [
@@ -90,7 +90,7 @@ window.UNIVERSIDADES = [
   {
     id: "usmp",
     sigla: "USMP",
-    nombre: "Univ. de San Martín de Porres – Filial Norte",
+    nombre: "Univ. de San Martín de Porres",
     tipo: "Privada",
     ciudad: "Chiclayo",
     color: "#13294b",

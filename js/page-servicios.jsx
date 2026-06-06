@@ -9,13 +9,13 @@ const SERVICIOS_DETAIL = [
     items: [
       "Proyecto de tesis: planteamiento, marco teórico y metodología",
       "Desarrollo completo: resultados, análisis estadístico y conclusiones",
-      "Control de originalidad con Turnitin — antiplagio garantizado",
+      "Control de originalidad con Turnitin, antiplagio garantizado",
       "Preparación y diapositivas para la sustentación",
       "Levantamiento de observaciones del jurado sin costo adicional",
       "Asesor personal asignado según tu carrera y universidad"
     ],
     hl_title: "Planes disponibles",
-    hl_items: ["Proyecto de Tesis — desde S/ 350","Desarrollo de Tesis — desde S/ 900","Tesis Integral — desde S/ 1,800"],
+    hl_items: ["Proyecto de Tesis desde S/ 350","Desarrollo de Tesis desde S/ 900","Tesis Integral desde S/ 1,800"],
     cta: "Explorar carreras",
     href: "tesis.html"
   },
@@ -142,7 +142,7 @@ function ServiciosPageHero(){
       <div className="wrap">
         <span className="eyebrow light">Nuestros Servicios</span>
         <h1>Un consorcio, todas las soluciones.</h1>
-        <p>Equipo de profesionales especializados en distintas áreas. Desde asesoría de tesis hasta consultoría empresarial — todo lo que necesitas, en un solo lugar.</p>
+        <p>Equipo de profesionales especializados en distintas áreas: desde asesoría de tesis hasta consultoría empresarial, todo lo que necesitas en un solo lugar.</p>
         <div className="hero-btns">
           <a className="btn btn-red btn-lg" href={waLink("Hola Grupo ASES 👋, quiero información sobre sus servicios.")} target="_blank" rel="noopener">
             <Icon n="whatsapp" /> Consultar un servicio
@@ -167,13 +167,38 @@ function AppServicios(){
           <div className="sec-head reveal">
             <span className="eyebrow">Catálogo completo</span>
             <h2>Cada servicio, a fondo.</h2>
-            <p>Conoce el detalle de lo que incluye cada área. Si tienes dudas, escríbenos por WhatsApp — te orientamos sin compromiso.</p>
+            <p>Conoce el detalle de lo que incluye cada área. Si tienes dudas, escríbenos por WhatsApp: te orientamos sin compromiso.</p>
           </div>
           <div className="serv-detail-grid">
             {SERVICIOS_DETAIL.map(s=> <ServicioCard key={s.id} s={s} />)}
           </div>
         </div>
       </section>
+
+      {/* Sección de Casos de Éxito */}
+      <section className="section alt">
+        <div className="wrap split-grid">
+          <div className="split-text reveal">
+            <span className="eyebrow">Casos de Éxito</span>
+            <h2 style={{marginTop:18}}>Tu meta de graduación está a tu alcance.</h2>
+            <p style={{marginTop:18, color:'var(--muted)', fontSize:16, lineHeight:1.75}}>
+              Más de 5,000 estudiantes y egresados ya han logrado su título profesional gracias a nuestra asesoría integral. Nos adaptamos rigurosamente a las directrices de investigación y formatos específicos de cada universidad de la región.
+            </p>
+            <p style={{marginTop:12, color:'var(--muted)', fontSize:16, lineHeight:1.75}}>
+              Con cronogramas de trabajo claros, revisiones semanales, control de originalidad continuo y preparación exhaustiva para la sustentación, eliminamos la incertidumbre y te guiamos con seguridad hacia tu meta.
+            </p>
+            <div style={{marginTop:28}}>
+              <a className="btn btn-red btn-lg" href={waLink("Hola Grupo ASES 👋, quiero cotizar la asesoría para mi carrera.")} target="_blank" rel="noopener">
+                <Icon n="whatsapp" /> Cotizar mi Asesoría
+              </a>
+            </div>
+          </div>
+          <div className="split-img reveal">
+            <img src="img/graduation.png" alt="Estudiante universitaria graduada con éxito" />
+          </div>
+        </div>
+      </section>
+
       <CTA />
       <Footer />
       <WhatsFloat />

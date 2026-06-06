@@ -5,6 +5,7 @@ function App(){
       <Hero />
       <Marquee />
       <Servicios />
+      <Acompanamiento />
       <Proceso />
       <CTA />
       <Footer />

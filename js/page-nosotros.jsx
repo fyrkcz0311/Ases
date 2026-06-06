@@ -5,7 +5,7 @@ const VALORES = [
   { ic:"spark",    t:"Excelencia",          d:"Estándares altos en todo lo que hacemos. La calidad no es opcional, es nuestra firma profesional." },
   { ic:"users",    t:"Cercanía",            d:"Un trato personalizado y humano. Siempre disponibles para escucharte y orientarte sin tecnicismos." },
   { ic:"scale",    t:"Ética Profesional",   d:"Actuamos con transparencia e integridad en cada etapa del servicio, sin excepciones ni compromisos." },
-  { ic:"chart",    t:"Resultados",          d:"No solo asesoramos — impulsamos resultados concretos y medibles para cada uno de nuestros clientes." }
+  { ic:"chart",    t:"Resultados",          d:"No solo asesoramos: impulsamos resultados concretos y medibles para cada uno de nuestros clientes." }
 ];
 
 const POR_QUE = [
@@ -85,8 +85,27 @@ function AppNosotros(){
         </div>
       </section>
 
-      {/* Valores */}
+      {/* Sección del Equipo */}
       <section className="section alt">
+        <div className="wrap split-grid">
+          <div className="split-text reveal">
+            <span className="eyebrow">Nuestro Consorcio</span>
+            <h2 style={{marginTop:18}}>Profesionales comprometidos con tu crecimiento.</h2>
+            <p style={{marginTop:18, color:'var(--muted)', fontSize:16, lineHeight:1.75}}>
+              En Grupo ASES reunimos a especialistas de diversas disciplinas: asesores metodológicos, estadísticos, abogados, contadores y expertos en marketing. Esta diversidad nos permite abordar tus necesidades desde una perspectiva integral y garantizar resultados sólidos.
+            </p>
+            <p style={{marginTop:12, color:'var(--muted)', fontSize:16, lineHeight:1.75}}>
+              Guiamos a estudiantes, egresados, emprendedores y empresas locales a cumplir sus metas con ética, calidad y acompañamiento continuo.
+            </p>
+          </div>
+          <div className="split-img reveal">
+            <img src="img/team.png" alt="Equipo de asesores Grupo ASES" />
+          </div>
+        </div>
+      </section>
+
+      {/* Valores */}
+      <section className="section">
         <div className="wrap">
           <div className="sec-head reveal">
             <span className="eyebrow">Nuestros valores</span>
@@ -111,7 +130,7 @@ function AppNosotros(){
           <div className="sec-head center reveal">
             <span className="eyebrow light">¿Por qué elegirnos?</span>
             <h2>La diferencia está en los detalles.</h2>
-            <p>No somos una sola persona — somos un consorcio. Eso significa que tienes un equipo completo trabajando para ti.</p>
+            <p>No somos una sola persona. Somos un consorcio, lo que significa que tienes un equipo completo trabajando para ti.</p>
           </div>
           <div className="proc-grid">
             {POR_QUE.map((p,i)=>(
