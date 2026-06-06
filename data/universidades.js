@@ -1,6 +1,6 @@
 // Banco de datos: Universidades de Chiclayo, sus facultades y carreras.
 // Para cambiar precios: edita el campo "precio" de cada carrera (en soles).
-window.UNIVERSIDADES = [
+export const UNIVERSIDADES = [
   {
     id: "unprg",
     sigla: "UNPRG",

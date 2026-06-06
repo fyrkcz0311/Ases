@@ -1,5 +1,10 @@
-// ============ Página: Asesoría de Tesis ============
-function TesisPageHero(){
+import { createRoot } from 'react-dom/client'
+import { Icon } from './icons.jsx'
+import { useMicroInteractions, Navbar, waLink } from './landing.jsx'
+import { Proceso, CTA, Footer, WhatsFloat, MobileCTABar } from './landing2.jsx'
+import { TesisExplorer } from './tesis.jsx'
+
+function TesisPageHero() {
   return (
     <header className="page-hero" id="inicio">
       <div className="wrap hero-grid">
@@ -42,11 +47,11 @@ function TesisPageHero(){
         </div>
       </div>
     </header>
-  );
+  )
 }
 
-function AppTesis(){
-  useMicroInteractions();
+function AppTesis() {
+  useMicroInteractions()
   return (
     <>
       <Navbar />
@@ -58,6 +63,7 @@ function AppTesis(){
       <WhatsFloat />
       <MobileCTABar />
     </>
-  );
+  )
 }
-ReactDOM.createRoot(document.getElementById('root')).render(<AppTesis />);
+
+createRoot(document.getElementById('root')).render(<AppTesis />)
