@@ -38,12 +38,17 @@ window.Logo = Logo;
 
 // ============ Navbar ============
 function Navbar(){
-  const [top, setTop] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
   useEffect(()=>{
-    const f = ()=> setTop(window.scrollY < 30);
-    window.addEventListener('scroll', f); f();
-    return ()=> window.removeEventListener('scroll', f);
+    const sentinel = document.getElementById('scroll-sentinel');
+    if(!sentinel) return;
+    const obs = new IntersectionObserver(
+      ([e]) => setScrolled(!e.isIntersecting),
+      { threshold: 0, rootMargin: '-80px 0px 0px 0px' }
+    );
+    obs.observe(sentinel);
+    return () => obs.disconnect();
   },[]);
   const pg = window.location.pathname.split('/').pop() || 'index.html';
   const links = [
@@ -53,7 +58,7 @@ function Navbar(){
   function active(href){ return pg===href||(href==='index.html'&&(pg===''||pg==='/')); }
   return (
     <>
-      <nav className={"nav"+(top?" top":"")}>
+      <nav className={"nav"+(scrolled?" scrolled":"")}>
         <div className="wrap nav-inner">
           <a href="index.html"><Logo /></a>
           <div className="nav-links">
@@ -83,23 +88,14 @@ window.Navbar = Navbar;
 function Hero(){
   return (
     <header className="hero" id="inicio">
-      <div className="hero-bg">
-        <div className="hero-arc arc1"></div>
-        <div className="hero-arc arc2"></div>
-      </div>
       <div className="wrap hero-grid">
         <div>
           <span className="eyebrow">Consorcio de Asesores · Chiclayo</span>
-          <h1 style={{marginTop:18}}>Soluciones <span className="hl">integrales</span> para personas y empresas.</h1>
-          <p className="hero-sub">Un equipo de profesionales especializados a tu servicio: asesoría de tesis, legal, contable y marketing, <b>todo en un solo lugar.</b></p>
+          <h1 style={{marginTop:16}}>Soluciones <span className="hl">integrales</span> para personas y empresas.</h1>
+          <p className="hero-sub">Asesoría de tesis, legal, contable y marketing. Todo en un solo lugar, con profesionales que conocen tu universidad.</p>
           <div className="hero-cta">
             <a className="btn btn-red btn-lg" href="tesis.html"><Icon n="cap" /> Asesoría de Tesis</a>
             <a className="btn btn-ghost btn-lg" href="servicios.html">Ver servicios</a>
-          </div>
-          <div className="hero-trust">
-            <div className="t"><b>+5,000</b><span>Tesis aprobadas</span></div>
-            <div className="t"><b>+10</b><span>Años de experiencia</span></div>
-            <div className="t"><b>100%</b><span>Trabajo original</span></div>
           </div>
         </div>
         <div className="hero-visual">
@@ -109,21 +105,6 @@ function Hero(){
               alt="Graduados asesorados por Grupo ASES en Chiclayo"
               className="hv-img"
             />
-            <div className="hv-status">
-              <span className="hv-dot"></span>
-              <span>Asesores disponibles ahora</span>
-            </div>
-            <div className="hv-stats">
-              <div className="hvs-item">
-                <span className="hvs-num">6</span>
-                <small>Universidades<br/>en Chiclayo</small>
-              </div>
-              <div className="hvs-sep"></div>
-              <div className="hvs-item">
-                <span className="hvs-num">4.9</span>
-                <small>Calificación<br/>promedio</small>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -131,6 +112,30 @@ function Hero(){
   );
 }
 window.Hero = Hero;
+
+// ============ Stats strip ============
+function Stats(){
+  const items = [
+    { n:"+5,000", l:"Tesis aprobadas" },
+    { n:"+10 años", l:"De experiencia" },
+    { n:"100%", l:"Trabajo original" }
+  ];
+  return (
+    <div className="stats-bar">
+      <div className="wrap">
+        <div className="stats-inner">
+          {items.map(s=>(
+            <div className="stat-item" key={s.l}>
+              <b>{s.n}</b>
+              <span>{s.l}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+window.Stats = Stats;
 
 // ============ Marquee universidades ============
 function Marquee(){

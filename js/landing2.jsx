@@ -36,8 +36,7 @@ function CTA(){
     <section className="section">
       <div className="wrap">
         <div className="cta reveal">
-          <span className="eyebrow">Tu éxito, nuestra misión</span>
-          <h2 style={{marginTop:14}}>Demos el siguiente paso, juntos.</h2>
+          <h2>Demos el siguiente paso, juntos.</h2>
           <p>Cuéntanos en qué etapa estás y recibe una consulta inicial sin costo. Estamos listos para acompañarte en cada paso de tu investigación.</p>
           <div className="cta-btns">
             <a className="btn btn-wa btn-lg" href={waLink("Hola Grupo ASES, quiero una asesoría inicial gratuita para mi tesis.")} target="_blank" rel="noopener"><Icon n="whatsapp" /> Escríbenos al WhatsApp</a>
