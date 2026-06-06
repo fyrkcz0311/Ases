@@ -175,6 +175,17 @@ function Hero(){
               fetchPriority="high"
             />
           </div>
+          <div className="hv-badge">
+            <div className="hv-badge-ic"><Icon n="cap" /></div>
+            <div className="hv-badge-tx">
+              <b>+5,000</b>
+              <span>Tesis aprobadas</span>
+            </div>
+          </div>
+          <div className="hv-chip">
+            <span className="hv-dot"></span>
+            Asesores en línea
+          </div>
         </div>
       </div>
     </header>
