@@ -263,59 +263,46 @@ window.Marquee = Marquee;
 // ============ Servicios ============
 function Servicios(){
   useReveal();
-  const otros = [
-    { ic:"scale", t:"Asesoría Legal", d:"Soluciones legales confiables para personas y empresas." },
-    { ic:"calc", t:"Asesoría Contable", d:"Orden, control y cumplimiento tributario sin complicaciones." },
-    { ic:"mega", t:"Marketing y Publicidad", d:"Estrategias que impulsan tu marca y tus ventas." },
-    { ic:"chart", t:"Finanzas y Consultoría", d:"Decisiones financieras inteligentes para crecer." },
-    { ic:"users", t:"Recursos Humanos", d:"Talento, desarrollo y bienestar para tu organización." }
+  const servicios = [
+    { ic:"cap",   t:"Asesoría de Tesis",    d:"De la idea a la sustentación. Explora las 6 universidades de Chiclayo y arma tu plan a medida.", href:"tesis.html",  featured:true },
+    { ic:"scale", t:"Asesoría Legal",        d:"Soluciones legales confiables para personas y empresas.",                                        href:waLink("Hola Grupo ASES, necesito asesoría legal.") },
+    { ic:"calc",  t:"Asesoría Contable",     d:"Orden, control y cumplimiento tributario sin complicaciones.",                                   href:waLink("Hola Grupo ASES, necesito asesoría contable.") },
+    { ic:"mega",  t:"Marketing y Publicidad",d:"Estrategias digitales que impulsan tu marca y tus ventas.",                                      href:waLink("Hola Grupo ASES, necesito marketing y publicidad.") }
   ];
   return (
     <section className="section" id="servicios">
       <div className="wrap">
         <div className="sec-head reveal">
           <h2>Un consorcio, <span className="hl">todas</span> las soluciones.</h2>
-          <p>Profesionales especializados en cada área. Hoy destacamos nuestra <b>Asesoría de Tesis</b>, el servicio favorito de los universitarios de Chiclayo.</p>
+          <p>Profesionales especializados en cada área para personas, estudiantes y empresas de Chiclayo.</p>
         </div>
-        <div className="serv-bento">
-          <a className="serv-card feature reveal" href="tesis.html"
-             style={{
-               backgroundImage:'url(img/servicios-bg.webp)',
-               backgroundSize:'cover', backgroundPosition:'center top', position:'relative'
-             }}>
-            <div style={{position:'absolute',inset:0,background:'linear-gradient(150deg,rgba(13,23,38,0.93) 55%,rgba(226,35,26,0.45) 100%)',borderRadius:'var(--r-lg)'}}></div>
-            <div style={{position:'relative',zIndex:1}}>
-              <span className="serv-tag">Servicio estrella</span>
-              <div className="serv-ic"><Icon n="cap" /></div>
-              <h3>Asesoría de Tesis</h3>
-              <p>Te acompañamos desde el proyecto hasta la sustentación. Explora las <b>6 universidades de Chiclayo</b> y todas sus carreras, y arma tu plan a medida.</p>
-              <div className="serv-link">Explorar mi carrera <Icon n="arrow" /></div>
-            </div>
-          </a>
-          <div className="serv-secondary">
-            <div className="serv-grid-sm">
-              {otros.slice(0,4).map((s,i)=>(
-                <a className="serv-card sm reveal" key={s.t} href={waLink("Hola Grupo ASES, quiero información sobre sus servicios.")}
-                   style={{
-                     animationDelay:(i*60)+'ms',
-                     ...(i===0&&{background:'rgba(13,23,38,0.03)'}),
-                     ...(i===2&&{background:'rgba(226,35,26,0.04)'})
-                   }}>
-                  <div className="serv-ic sm"><Icon n={s.ic} /></div>
+        <div className="serv-4grid">
+          {servicios.map((s,i)=>(
+            <a
+              key={s.t}
+              className={"serv-4card reveal"+(s.featured?" featured":"")}
+              href={s.href}
+              style={{
+                animationDelay:(i*70)+'ms',
+                ...(s.featured&&{
+                  backgroundImage:'url(img/servicios-bg.webp)',
+                  backgroundSize:'cover',
+                  backgroundPosition:'center top'
+                })
+              }}
+            >
+              {s.featured && <div className="s4-overlay"></div>}
+              <div className="s4-inner">
+                {s.featured && <span className="serv-tag">Servicio estrella</span>}
+                <div className="s4-header">
+                  <div className={"serv-ic"+(s.featured?"":" sm")}><Icon n={s.ic} /></div>
                   <h3>{s.t}</h3>
-                  <p>{s.d}</p>
-                </a>
-              ))}
-            </div>
-            <a className="serv-card wide reveal" href={waLink("Hola Grupo ASES, quiero información sobre sus servicios.")}>
-              <div className="serv-ic"><Icon n={otros[4].ic} /></div>
-              <div className="serv-wide-tx">
-                <h3>{otros[4].t}</h3>
-                <p>{otros[4].d}</p>
+                </div>
+                <p>{s.d}</p>
+                {s.featured && <div className="serv-link">Explorar mi carrera <Icon n="arrow" /></div>}
               </div>
-              <span className="serv-arr"><Icon n="arrow" /></span>
             </a>
-          </div>
+          ))}
         </div>
       </div>
     </section>

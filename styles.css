@@ -480,21 +480,79 @@ p {
 }
 
 /* ---------- Servicios — bento asimetrico ---------- */
-.serv-bento {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 20px;
-  align-items: start;
-}
-.serv-secondary {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.serv-grid-sm {
+.serv-4grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 20px;
+}
+.serv-4card {
+  position: relative;
+  border-radius: var(--r-lg);
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  transition: 0.28s cubic-bezier(0.2, 0.8, 0.3, 1);
+  overflow: hidden;
+}
+.serv-4card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.serv-4card.featured {
+  border-color: transparent;
+}
+.serv-4card.featured:hover {
+  transform: translateY(-4px);
+}
+.s4-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, rgba(13,23,38,0.93) 50%, rgba(226,35,26,0.5) 100%);
+  border-radius: var(--r-lg);
+}
+.s4-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.s4-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.s4-header .serv-ic,
+.s4-header .serv-ic.sm {
+  margin-bottom: 0;
+  flex: none;
+}
+.serv-4card h3 {
+  font-size: 18px;
+  margin: 0;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.serv-4card.featured h3 {
+  color: #fff;
+}
+.serv-4card p {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.serv-4card.featured p {
+  color: #9fb0c4;
+}
+@media (max-width: 680px) {
+  .serv-4grid {
+    grid-template-columns: 1fr;
+  }
 }
 .serv-card {
   background: var(--paper);
@@ -624,7 +682,7 @@ p {
   color: #fff;
   padding: 5px 11px;
   border-radius: 999px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 .serv-link {
   display: inline-flex;
@@ -1648,9 +1706,6 @@ p {
   .hero-visual {
     max-width: 480px;
   }
-  .serv-bento {
-    grid-template-columns: 1fr;
-  }
   .foot-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1702,9 +1757,6 @@ p {
   }
   .stats-bar {
     padding: 40px 0;
-  }
-  .serv-grid-sm {
-    grid-template-columns: 1fr;
   }
   .serv-card.wide {
     flex-direction: column;
