@@ -663,7 +663,7 @@ p {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('img/proceso-bg.webp');
+  background-image: url('/img/proceso-bg.webp');
   background-size: cover;
   background-position: center;
   opacity: 0.05;

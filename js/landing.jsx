@@ -90,14 +90,14 @@ export function Logo({ dark, sm }) {
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menu, setMenu] = useState(false)
+  const sentinelRef = useRef(null)
   useEffect(() => {
-    const sentinel = document.getElementById('scroll-sentinel')
-    if (!sentinel) return
+    if (!sentinelRef.current) return
     const obs = new IntersectionObserver(
       ([e]) => setScrolled(!e.isIntersecting),
       { threshold: 0, rootMargin: '-80px 0px 0px 0px' }
     )
-    obs.observe(sentinel)
+    obs.observe(sentinelRef.current)
     return () => obs.disconnect()
   }, [])
   const pg = window.location.pathname.split('/').pop() || 'index.html'
@@ -110,6 +110,7 @@ export function Navbar() {
   function active(href) { return pg === href || (href === 'index.html' && onIndex) }
   return (
     <>
+      <div ref={sentinelRef} style={{ position: 'absolute', top: 0, height: '1px', width: '100%', pointerEvents: 'none' }}></div>
       <nav className={"nav" + (scrolled ? " scrolled" : "")}>
         <div className="wrap nav-inner">
           <a href="index.html"><Logo /></a>
