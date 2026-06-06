@@ -52,8 +52,8 @@ function Navbar(){
   },[]);
   const pg = window.location.pathname.split('/').pop() || 'index.html';
   const links = [
-    ["Inicio","index.html"],["Servicios","servicios.html"],["Asesoría de Tesis","tesis.html"],
-    ["Nosotros","nosotros.html"],["Contacto","contacto.html"]
+    ["Inicio","index.html"],["Asesoría de Tesis","tesis.html"],
+    ["Nosotros","#nosotros"],["Ubicación","#ubicacion"]
   ];
   function active(href){ return pg===href||(href==='index.html'&&(pg===''||pg==='/')); }
   return (
@@ -95,7 +95,7 @@ function Hero(){
           <p className="hero-sub">Asesoría de tesis, legal, contable y marketing. Todo en un solo lugar, con profesionales que conocen tu universidad.</p>
           <div className="hero-cta">
             <a className="btn btn-red btn-lg" href="tesis.html"><Icon n="cap" /> Asesoría de Tesis</a>
-            <a className="btn btn-ghost btn-lg" href="servicios.html">Ver servicios</a>
+            <a className="btn btn-ghost btn-lg" href="#nosotros">Quiénes somos</a>
           </div>
         </div>
         <div className="hero-visual">
@@ -177,24 +177,36 @@ function Servicios(){
           <p>Profesionales especializados en cada área. Hoy destacamos nuestra <b>Asesoría de Tesis</b>, el servicio favorito de los universitarios de Chiclayo.</p>
         </div>
         <div className="serv-bento">
-          <a className="serv-card feature reveal" href="tesis.html">
-            <span className="serv-tag">Servicio estrella</span>
-            <div className="serv-ic"><Icon n="cap" /></div>
-            <h3>Asesoría de Tesis</h3>
-            <p>Te acompañamos desde el proyecto hasta la sustentación. Explora las <b>6 universidades de Chiclayo</b> y todas sus carreras, y arma tu plan a medida.</p>
-            <div className="serv-link">Explorar mi carrera <Icon n="arrow" /></div>
+          <a className="serv-card feature reveal" href="tesis.html"
+             style={{
+               backgroundImage:'url(img/servicios-bg.png)',
+               backgroundSize:'cover', backgroundPosition:'center top', position:'relative'
+             }}>
+            <div style={{position:'absolute',inset:0,background:'linear-gradient(150deg,rgba(13,23,38,0.93) 55%,rgba(226,35,26,0.45) 100%)',borderRadius:'var(--r-lg)'}}></div>
+            <div style={{position:'relative',zIndex:1}}>
+              <span className="serv-tag">Servicio estrella</span>
+              <div className="serv-ic"><Icon n="cap" /></div>
+              <h3>Asesoría de Tesis</h3>
+              <p>Te acompañamos desde el proyecto hasta la sustentación. Explora las <b>6 universidades de Chiclayo</b> y todas sus carreras, y arma tu plan a medida.</p>
+              <div className="serv-link">Explorar mi carrera <Icon n="arrow" /></div>
+            </div>
           </a>
           <div className="serv-secondary">
             <div className="serv-grid-sm">
               {otros.slice(0,4).map((s,i)=>(
-                <a className="serv-card sm reveal" key={s.t} href="servicios.html" style={{animationDelay:(i*60)+'ms'}}>
+                <a className="serv-card sm reveal" key={s.t} href={waLink("Hola Grupo ASES, quiero información sobre sus servicios.")}
+                   style={{
+                     animationDelay:(i*60)+'ms',
+                     ...(i===0&&{background:'rgba(13,23,38,0.03)'}),
+                     ...(i===2&&{background:'rgba(226,35,26,0.04)'})
+                   }}>
                   <div className="serv-ic sm"><Icon n={s.ic} /></div>
                   <h3>{s.t}</h3>
                   <p>{s.d}</p>
                 </a>
               ))}
             </div>
-            <a className="serv-card wide reveal" href="servicios.html">
+            <a className="serv-card wide reveal" href={waLink("Hola Grupo ASES, quiero información sobre sus servicios.")}>
               <div className="serv-ic"><Icon n={otros[4].ic} /></div>
               <div className="serv-wide-tx">
                 <h3>{otros[4].t}</h3>
@@ -209,6 +221,40 @@ function Servicios(){
   );
 }
 window.Servicios = Servicios;
+
+// ============ Galería visual ============
+function Galeria(){
+  useReveal();
+  const items = [
+    { img:'img/galeria-asesoria.png',   label:'Asesoría de tesis',   sub:'Desde el proyecto hasta sustentar' },
+    { img:'img/galeria-equipo.png',     label:'Equipo especializado', sub:'Abogados, asesores y contadores' },
+    { img:'img/galeria-graduacion.png', label:'Resultados reales',    sub:'+5,000 tesis aprobadas en Chiclayo' }
+  ];
+  return (
+    <section className="section galeria-section">
+      <div className="wrap">
+        <div className="galeria-grid">
+          {items.map((item,i)=>(
+            <div className="galeria-item reveal" key={item.seed} style={{animationDelay:(i*100)+'ms'}}>
+              <div className="galeria-img-wrap">
+                <img
+                  src={item.img}
+                  alt={item.label}
+                  loading="lazy"
+                />
+                <div className="galeria-overlay">
+                  <span className="galeria-label">{item.label}</span>
+                  <span className="galeria-sub">{item.sub}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+window.Galeria = Galeria;
 
 // ============ Acompañamiento ============
 function Acompanamiento(){

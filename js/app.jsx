@@ -7,9 +7,11 @@ function App(){
       <Stats />
       <Marquee />
       <Servicios />
+      <Galeria />
       <Acompanamiento />
       <Proceso />
-      <CTA />
+      <NosotrosPreview />
+      <MapSection />
       <Footer />
       <WhatsFloat />
     </>
