@@ -1753,6 +1753,66 @@ p {
   .hv-img {
     height: 320px;
   }
+  body {
+    padding-bottom: 76px;
+  }
+}
+
+/* ---------- Mobile CTA Bar ---------- */
+.mobile-cta-bar {
+  display: none;
+}
+@media (max-width: 760px) {
+  .mobile-cta-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+    gap: 10px;
+    box-shadow: 0 -4px 20px rgba(13, 23, 38, 0.08);
+  }
+  .mcta-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 10px;
+    border-radius: var(--r);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .mcta-btn:active {
+    opacity: 0.85;
+  }
+  .mcta-wa {
+    background: #25d366;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  }
+  .mcta-call {
+    background: var(--navy);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(13, 23, 38, 0.2);
+  }
+  .mcta-btn svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+  }
+  .wa-float {
+    display: none;
+  }
 }
 
 /* ---------- Nav active link ---------- */
@@ -2219,6 +2279,10 @@ p {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 60px;
   align-items: center;
+}
+.split-img {
+  overflow: hidden;
+  border-radius: var(--r-lg);
 }
 .split-img img {
   width: 100%;

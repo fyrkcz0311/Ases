@@ -20,6 +20,7 @@ function TesisPageHero(){
 }
 
 function AppTesis(){
+  useMicroInteractions();
   return (
     <>
       <Navbar />
@@ -29,6 +30,7 @@ function AppTesis(){
       <CTA />
       <Footer />
       <WhatsFloat />
+      <MobileCTABar />
     </>
   );
 }

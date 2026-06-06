@@ -32,6 +32,8 @@ window.Proceso = Proceso;
 // ============ Nosotros (preview en landing) ============
 function NosotrosPreview(){
   useReveal();
+  const teamImgRef = useRef(null);
+  useParallax(teamImgRef, 30);
   const valores = [
     { ic:"shield", t:"Compromiso",    d:"Cada cliente es una responsabilidad personal." },
     { ic:"check",  t:"Originalidad",  d:"Trabajo 100% auténtico, libre de plagio." },
@@ -63,7 +65,7 @@ function NosotrosPreview(){
               <a className="btn btn-navy btn-lg" href={waLink("Hola Grupo ASES, quiero conocer más sobre el equipo.")}><Icon n="whatsapp" /> Hablar con el equipo</a>
             </div>
           </div>
-          <div className="split-img reveal">
+          <div className="split-img reveal" ref={teamImgRef}>
             <img src="img/team.png" alt="Equipo de profesionales Grupo ASES en Chiclayo" width="600" height="600" loading="lazy" decoding="async" />
           </div>
         </div>
@@ -196,6 +198,21 @@ function Footer(){
   );
 }
 window.Footer = Footer;
+
+// ============ Barra CTA fija en móvil ============
+function MobileCTABar(){
+  return (
+    <div className="mobile-cta-bar">
+      <a className="mcta-btn mcta-wa" href={waLink("Hola Grupo ASES, quiero información sobre sus servicios.")} target="_blank" rel="noopener">
+        <Icon n="whatsapp" /> Escríbenos
+      </a>
+      <a className="mcta-btn mcta-call" href={"tel:"+ASES.tel}>
+        <Icon n="phone" /> {ASES.telDisplay}
+      </a>
+    </div>
+  );
+}
+window.MobileCTABar = MobileCTABar;
 
 // ============ Botón flotante WhatsApp ============
 function WhatsFloat(){

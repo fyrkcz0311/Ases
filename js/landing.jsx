@@ -12,6 +12,64 @@ window.ASES = ASES; window.waLink = waLink;
 
 const { useState, useEffect, useRef } = React;
 
+// GSAP plugin registration (once at load)
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// Hook: spring press micro-interaction on all .btn elements
+function useMicroInteractions() {
+  useEffect(() => {
+    if (typeof gsap === 'undefined') return;
+    let active = null;
+    const onDown = e => {
+      active = e.target.closest('.btn');
+      if (active) gsap.to(active, { scale: 0.95, duration: 0.12, ease: 'power2.out', overwrite: true });
+    };
+    const onUp = () => {
+      if (active) {
+        gsap.to(active, { scale: 1, duration: 0.5, ease: 'elastic.out(1, 0.4)', overwrite: true });
+        active = null;
+      }
+    };
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('mouseup', onUp);
+    document.addEventListener('touchstart', onDown, { passive: true });
+    document.addEventListener('touchend', onUp, { passive: true });
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('mouseup', onUp);
+      document.removeEventListener('touchstart', onDown);
+      document.removeEventListener('touchend', onUp);
+    };
+  }, []);
+}
+window.useMicroInteractions = useMicroInteractions;
+
+// Hook: parallax suave en un elemento al hacer scroll
+function useParallax(ref, amount = 40) {
+  useEffect(() => {
+    if (!ref.current || typeof gsap === 'undefined') return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(ref.current,
+        { y: -(amount / 2) },
+        {
+          y: amount / 2,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: ref.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        }
+      );
+    });
+    return () => ctx.revert();
+  }, []);
+}
+window.useParallax = useParallax;
+
 function useReveal(){
   useEffect(()=>{
     const els = document.querySelectorAll('.reveal');
@@ -53,11 +111,13 @@ function Navbar(){
     return () => obs.disconnect();
   },[]);
   const pg = window.location.pathname.split('/').pop() || 'index.html';
+  const onIndex = pg===''||pg==='/'||pg==='index.html';
   const links = [
     ["Inicio","index.html"],["Asesoría de Tesis","tesis.html"],
-    ["Nosotros","#nosotros"],["Ubicación","#ubicacion"]
+    ["Nosotros", onIndex?"#nosotros":"index.html#nosotros"],
+    ["Ubicación", onIndex?"#ubicacion":"index.html#ubicacion"]
   ];
-  function active(href){ return pg===href||(href==='index.html'&&(pg===''||pg==='/')); }
+  function active(href){ return pg===href||(href==='index.html'&&onIndex); }
   return (
     <>
       <nav className={"nav"+(scrolled?" scrolled":"")}>
@@ -88,6 +148,8 @@ window.Navbar = Navbar;
 
 // ============ Hero ============
 function Hero(){
+  const imgRef = useRef(null);
+  useParallax(imgRef, 50);
   return (
     <header className="hero" id="inicio">
       <div className="wrap hero-grid">
@@ -103,6 +165,7 @@ function Hero(){
         <div className="hero-visual">
           <div className="hv-img-wrap">
             <img
+              ref={imgRef}
               src="img/graduation.png"
               alt="Graduados asesorados por Grupo ASES en Chiclayo"
               className="hv-img"
@@ -121,18 +184,50 @@ window.Hero = Hero;
 
 // ============ Stats strip ============
 function Stats(){
+  const barRef = useRef(null);
+  useEffect(() => {
+    if (!barRef.current || typeof gsap === 'undefined') return;
+    const els = barRef.current.querySelectorAll('.stat-count');
+    els.forEach(el => {
+      const end = +el.dataset.end;
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const useLocale = el.dataset.locale === 'true';
+      const obj = { v: 0 };
+      gsap.to(obj, {
+        v: end,
+        duration: 2.2,
+        ease: 'power2.out',
+        onUpdate() {
+          const val = Math.round(obj.v);
+          el.textContent = prefix + (useLocale ? val.toLocaleString('es-PE') : val) + suffix;
+        },
+        scrollTrigger: {
+          trigger: barRef.current,
+          start: 'top 85%',
+          once: true
+        }
+      });
+    });
+  }, []);
+
   const items = [
-    { n:"+5,000", l:"Tesis aprobadas" },
-    { n:"+10 años", l:"De experiencia" },
-    { n:"100%", l:"Trabajo original" }
+    { end:5000, prefix:'+', suffix:'',       locale:true,  display:'+5,000',   l:'Tesis aprobadas' },
+    { end:10,   prefix:'+', suffix:' años',  locale:false, display:'+10 años', l:'De experiencia'  },
+    { end:100,  prefix:'',  suffix:'%',      locale:false, display:'100%',     l:'Trabajo original'}
   ];
   return (
-    <div className="stats-bar">
+    <div className="stats-bar" ref={barRef}>
       <div className="wrap">
         <div className="stats-inner">
           {items.map(s=>(
             <div className="stat-item" key={s.l}>
-              <b>{s.n}</b>
+              <b className="stat-count"
+                 data-end={s.end}
+                 data-prefix={s.prefix}
+                 data-suffix={s.suffix}
+                 data-locale={s.locale}
+              >{s.display}</b>
               <span>{s.l}</span>
             </div>
           ))}
@@ -267,11 +362,13 @@ window.Galeria = Galeria;
 // ============ Acompañamiento ============
 function Acompanamiento(){
   useReveal();
+  const imgRef = useRef(null);
+  useParallax(imgRef, 30);
   return (
     <section className="section alt">
       <div className="wrap split-grid">
         <div className="split-img reveal">
-          <img src="img/mentoring.png" alt="Asesoría personalizada de tesis en Chiclayo" width="600" height="600" loading="lazy" decoding="async" />
+          <img ref={imgRef} src="img/mentoring.png" alt="Asesoría personalizada de tesis en Chiclayo" width="600" height="600" loading="lazy" decoding="async" />
         </div>
         <div className="split-text reveal">
           <h2>Te acompañamos en cada etapa de tu investigación.</h2>
