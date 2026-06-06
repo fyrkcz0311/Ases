@@ -31,6 +31,8 @@ function Logo({ dark, sm }){
       src="img/ases.png"
       alt="Grupo ASES - Consorcio de Asesores"
       className={"logo-img"+(sm?" sm":"")+(dark?" on-dark":"")}
+      width="140" height="40"
+      decoding="async"
     />
   );
 }
@@ -104,6 +106,10 @@ function Hero(){
               src="img/graduation.png"
               alt="Graduados asesorados por Grupo ASES en Chiclayo"
               className="hv-img"
+              width="600" height="600"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
             />
           </div>
         </div>
@@ -148,7 +154,7 @@ function Marquee(){
         {all.concat(all).map((item,i)=>(
           <div className="marquee-item" key={i}>
             {item.isUni
-              ? <><img src={item.logo} alt={item.sigla} className="mq-uni-logo" />{item.sigla}</>
+              ? <><img src={item.logo} alt={item.sigla} className="mq-uni-logo" width="32" height="32" loading="lazy" decoding="async" />{item.sigla}</>
               : item.text
             }
           </div>
@@ -179,7 +185,7 @@ function Servicios(){
         <div className="serv-bento">
           <a className="serv-card feature reveal" href="tesis.html"
              style={{
-               backgroundImage:'url(img/servicios-bg.png)',
+               backgroundImage:'url(img/servicios-bg.webp)',
                backgroundSize:'cover', backgroundPosition:'center top', position:'relative'
              }}>
             <div style={{position:'absolute',inset:0,background:'linear-gradient(150deg,rgba(13,23,38,0.93) 55%,rgba(226,35,26,0.45) 100%)',borderRadius:'var(--r-lg)'}}></div>
@@ -226,9 +232,9 @@ window.Servicios = Servicios;
 function Galeria(){
   useReveal();
   const items = [
-    { img:'img/galeria-asesoria.png',   label:'Asesoría de tesis',   sub:'Desde el proyecto hasta sustentar' },
-    { img:'img/galeria-equipo.png',     label:'Equipo especializado', sub:'Abogados, asesores y contadores' },
-    { img:'img/galeria-graduacion.png', label:'Resultados reales',    sub:'+5,000 tesis aprobadas en Chiclayo' }
+    { img:'img/galeria-asesoria.webp',   label:'Asesoría de tesis',   sub:'Desde el proyecto hasta sustentar' },
+    { img:'img/galeria-equipo.webp',     label:'Equipo especializado', sub:'Abogados, asesores y contadores' },
+    { img:'img/galeria-graduacion.webp', label:'Resultados reales',    sub:'+5,000 tesis aprobadas en Chiclayo' }
   ];
   return (
     <section className="section galeria-section">
@@ -240,7 +246,9 @@ function Galeria(){
                 <img
                   src={item.img}
                   alt={item.label}
+                  width="600" height="400"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="galeria-overlay">
                   <span className="galeria-label">{item.label}</span>
@@ -263,7 +271,7 @@ function Acompanamiento(){
     <section className="section alt">
       <div className="wrap split-grid">
         <div className="split-img reveal">
-          <img src="img/mentoring.png" alt="Asesoría personalizada de tesis en Chiclayo" />
+          <img src="img/mentoring.png" alt="Asesoría personalizada de tesis en Chiclayo" width="600" height="600" loading="lazy" decoding="async" />
         </div>
         <div className="split-text reveal">
           <h2>Te acompañamos en cada etapa de tu investigación.</h2>

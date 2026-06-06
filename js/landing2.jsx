@@ -64,7 +64,7 @@ function NosotrosPreview(){
             </div>
           </div>
           <div className="split-img reveal">
-            <img src="img/team.png" alt="Equipo de profesionales Grupo ASES en Chiclayo" />
+            <img src="img/team.png" alt="Equipo de profesionales Grupo ASES en Chiclayo" width="600" height="600" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -174,7 +174,7 @@ function Footer(){
             <h5>Universidades</h5>
             {(window.UNIVERSIDADES||[]).map(u=>(
               <a href="tesis.html" key={u.id} className="foot-uni-link">
-                <img src={u.logo} alt={u.sigla} className="foot-uni-logo" />
+                <img src={u.logo} alt={u.sigla} className="foot-uni-logo" width="20" height="20" loading="lazy" decoding="async" />
                 {u.sigla}
               </a>
             ))}
