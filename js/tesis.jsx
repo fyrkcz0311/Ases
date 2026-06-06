@@ -94,7 +94,9 @@ function TesisExplorer(){
                 <div className="uni-grid stagger">
                   {unis.map((u,i)=>(
                     <button className="uni-card" key={u.id} style={{"--uc":u.color, animationDelay:(i*55)+'ms'}} onClick={()=>pickUni(u)}>
-                      <div className="seal" style={{background:u.color}}>{u.sigla}</div>
+                      <div className="uni-seal">
+                        <img src={u.logo} alt={u.sigla} className="uni-seal-img" />
+                      </div>
                       <div>
                         <div className="nm">{u.nombre}</div>
                         <div className="meta">

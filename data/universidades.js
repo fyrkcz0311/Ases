@@ -8,6 +8,7 @@ window.UNIVERSIDADES = [
     tipo: "Pública",
     ciudad: "Lambayeque · Chiclayo",
     color: "#1f4e8c",
+    logo: "img/unprg.png",
     facultades: [
       { nombre: "Agronomía", carreras: ["Agronomía"] },
       { nombre: "Ciencias Biológicas", carreras: ["Ciencias Biológicas", "Biología – Microbiología y Parasitología", "Biología – Pesquería", "Biología – Botánica", "Biología – Zoología"] },
@@ -32,6 +33,7 @@ window.UNIVERSIDADES = [
     tipo: "Privada",
     ciudad: "Chiclayo",
     color: "#7a1f2b",
+    logo: "img/usat.jpg",
     facultades: [
       { nombre: "Ciencias Empresariales", carreras: ["Administración de Empresas", "Administración Hotelera y de Servicios Turísticos", "Contabilidad", "Economía"] },
       { nombre: "Derecho", carreras: ["Derecho"] },
@@ -47,6 +49,7 @@ window.UNIVERSIDADES = [
     tipo: "Privada",
     ciudad: "Pimentel · Chiclayo",
     color: "#0a2a66",
+    logo: "img/uss.png",
     facultades: [
       { nombre: "Ciencias Empresariales", carreras: ["Administración", "Administración Pública", "Contabilidad", "Economía", "Negocios Internacionales", "Turismo y Negocios"] },
       { nombre: "Derecho y Humanidades", carreras: ["Derecho", "Psicología", "Ciencias de la Comunicación", "Artes & Diseño Gráfico Empresarial", "Educación Inicial"] },
@@ -55,12 +58,13 @@ window.UNIVERSIDADES = [
     ]
   },
   {
-    id: "uss2",
+    id: "utp",
     sigla: "UTP",
     nombre: "Univ. Tecnológica del Perú",
     tipo: "Privada",
     ciudad: "Chiclayo",
     color: "#c8102e",
+    logo: "img/utp.png",
     facultades: [
       { nombre: "Administración y Negocios", carreras: ["Administración de Empresas", "Administración de Negocios Internacionales", "Administración Hotelera y de Turismo", "Administración de Banca y Finanzas", "Contabilidad", "Marketing", "Economía Gerencial"] },
       { nombre: "Ingeniería", carreras: ["Ingeniería Industrial", "Ingeniería de Sistemas e Informática", "Ingeniería de Software", "Ingeniería Civil", "Ingeniería Electrónica", "Ingeniería Mecánica", "Ingeniería Mecatrónica", "Ingeniería de Telecomunicaciones", "Ingeniería de Seguridad Industrial y Minera", "Ingeniería de Minas", "Ingeniería Automotriz", "Ingeniería Aeronáutica"] },
@@ -75,6 +79,7 @@ window.UNIVERSIDADES = [
     tipo: "Privada",
     ciudad: "Chiclayo",
     color: "#9c1d2b",
+    logo: "img/ucv.png",
     facultades: [
       { nombre: "Ciencias Empresariales", carreras: ["Administración", "Contabilidad", "Marketing y Dirección de Empresas", "Negocios Internacionales", "Administración en Turismo y Hotelería"] },
       { nombre: "Ciencias de la Salud", carreras: ["Medicina", "Enfermería", "Estomatología", "Nutrición", "Psicología", "Tecnología Médica – Terapia Física y Rehabilitación"] },
@@ -89,6 +94,7 @@ window.UNIVERSIDADES = [
     tipo: "Privada",
     ciudad: "Chiclayo",
     color: "#13294b",
+    logo: "img/usmp.png",
     facultades: [
       { nombre: "Ciencias Administrativas y Recursos Humanos", carreras: ["Administración", "Administración de Negocios Internacionales", "Marketing", "Gestión de Recursos Humanos"] },
       { nombre: "Ciencias Contables, Económicas y Financieras", carreras: ["Contabilidad y Finanzas", "Economía"] },

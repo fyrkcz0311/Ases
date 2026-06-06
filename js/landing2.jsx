@@ -71,7 +71,10 @@ function Footer(){
           <div className="foot-col">
             <h5>Universidades</h5>
             {(window.UNIVERSIDADES||[]).map(u=>(
-              <a href="#tesis" key={u.id}>{u.sigla}</a>
+              <a href="tesis.html" key={u.id} className="foot-uni-link">
+                <img src={u.logo} alt={u.sigla} className="foot-uni-logo" />
+                {u.sigla}
+              </a>
             ))}
           </div>
           <div className="foot-col">

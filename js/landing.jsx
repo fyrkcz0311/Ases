@@ -28,14 +28,11 @@ window.useReveal = useReveal;
 // ============ Logo ============
 function Logo({ dark, sm }){
   return (
-    <div className={"logo"+(dark?" on-dark":"")}>
-      <div className={"logo-mark"+(sm?" sm":"")}></div>
-      <div className="logo-txt">
-        <div className="g">Grupo</div>
-        <div className="a">ases</div>
-        <div className="c">Consorcio de Asesores</div>
-      </div>
-    </div>
+    <img
+      src="img/ases.png"
+      alt="Grupo ASES — Consorcio de Asesores"
+      className={"logo-img"+(sm?" sm":"")+(dark?" on-dark":"")}
+    />
   );
 }
 window.Logo = Logo;
@@ -129,13 +126,20 @@ window.Hero = Hero;
 
 // ============ Marquee universidades ============
 function Marquee(){
-  const items = (window.UNIVERSIDADES||[]).map(u=>u.sigla);
-  const all = [...items, "Asesoría de Tesis", ...items, "100% Original"];
+  const unis = (window.UNIVERSIDADES||[]).map(u=>({logo:u.logo, sigla:u.sigla, isUni:true}));
+  const extras = ["Asesoría de Tesis", "100% Original", "Trabajo Garantizado"];
+  const all = [...unis, ...extras.map(t=>({text:t})), ...unis, ...extras.map(t=>({text:t}))];
   return (
     <div className="marquee">
       <div className="marquee-track">
-        {all.concat(all).map((t,i)=>(
-          <div className="marquee-item" key={i}><span className="b"></span>{t}</div>
+        {all.concat(all).map((item,i)=>(
+          <div className="marquee-item" key={i}>
+            <span className="b"></span>
+            {item.isUni
+              ? <><img src={item.logo} alt={item.sigla} className="mq-uni-logo" />{item.sigla}</>
+              : item.text
+            }
+          </div>
         ))}
       </div>
     </div>

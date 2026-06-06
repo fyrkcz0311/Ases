@@ -162,78 +162,60 @@ p {
   font-size: 16px;
 }
 
-/* ---------- Logo ---------- */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 11px;
+/* ---------- Logo empresa ---------- */
+.logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
-.logo-mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  position: relative;
-  flex: none;
-  background: conic-gradient(
-    from 200deg,
-    var(--red) 0deg 120deg,
-    #c9ccd1 150deg 250deg,
-    #8a8f97 250deg 330deg,
-    var(--red) 360deg
-  );
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-}
-.logo-mark::before {
-  content: "";
-  position: absolute;
-  inset: 31%;
-  border-radius: 50%;
-  background: #fff;
-}
-.logo-mark::after {
-  content: "";
-  position: absolute;
-  inset: 42%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 35%, var(--red-2), var(--red));
-}
-.logo-mark.sm {
-  width: 34px;
+.logo-img.sm {
   height: 34px;
 }
-.logo-txt {
-  line-height: 1;
+.logo-img.on-dark {
+  filter: brightness(0) invert(1);
 }
-.logo-txt .g {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  color: var(--muted);
-  text-transform: uppercase;
+
+/* ---------- Logos universidades en Marquee ---------- */
+.mq-uni-logo {
+  height: 26px;
+  width: 26px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+  padding: 2px;
+  flex: none;
 }
-.logo-txt .a {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: 23px;
-  color: var(--red);
-  letter-spacing: -0.02em;
-  text-transform: lowercase;
-  margin-top: -1px;
+
+/* ---------- Logos universidades en TesisExplorer ---------- */
+.uni-seal {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
 }
-.logo-txt .c {
-  font-size: 7.5px;
-  letter-spacing: 0.2em;
-  color: var(--muted);
-  text-transform: uppercase;
-  font-weight: 700;
+.uni-seal-img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
 }
-.logo.on-dark .g,
-.logo.on-dark .c {
-  color: #9fb0c4;
+
+/* ---------- Logos universidades en Footer ---------- */
+.foot-uni-link {
+  display: flex !important;
+  align-items: center;
+  gap: 9px !important;
 }
-.logo.on-dark .a {
-  color: #fff;
+.foot-uni-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px;
+  flex: none;
 }
 
 /* ---------- Navbar ---------- */
