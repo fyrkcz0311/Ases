@@ -155,8 +155,8 @@ function Hero(){
       <div className="wrap hero-grid">
         <div>
           <span className="eyebrow">Consorcio de Asesores · Chiclayo</span>
-          <h1 style={{marginTop:16}}>Soluciones <span className="hl">integrales</span> para personas y empresas.</h1>
-          <p className="hero-sub">Asesoría de tesis, legal, contable y marketing. Todo en un solo lugar, con profesionales que conocen tu universidad.</p>
+          <h1 style={{marginTop:16}}>El equipo profesional que tu proyecto <span className="hl">necesita.</span></h1>
+          <p className="hero-sub">Tesis, asesoría legal, contable y marketing — en un solo lugar, con expertos que conocen tu realidad.</p>
           <div className="hero-cta">
             <a className="btn btn-red btn-lg" href="tesis.html"><Icon n="cap" /> Asesoría de Tesis</a>
             <a className="btn btn-ghost btn-lg" href="#nosotros">Quiénes somos</a>
@@ -166,20 +166,20 @@ function Hero(){
           <div className="hv-img-wrap">
             <img
               ref={imgRef}
-              src="img/graduation.png"
-              alt="Graduados asesorados por Grupo ASES en Chiclayo"
+              src="img/team-hero.webp"
+              alt="Equipo de asesores profesionales de Grupo ASES en Chiclayo"
               className="hv-img"
-              width="600" height="600"
+              width="600" height="450"
               loading="eager"
               decoding="async"
               fetchPriority="high"
             />
           </div>
           <div className="hv-badge">
-            <div className="hv-badge-ic"><Icon n="cap" /></div>
+            <div className="hv-badge-ic"><Icon n="chart" /></div>
             <div className="hv-badge-tx">
-              <b>+5,000</b>
-              <span>Tesis aprobadas</span>
+              <b>+10 años</b>
+              <span>de experiencia</span>
             </div>
           </div>
           <div className="hv-chip">

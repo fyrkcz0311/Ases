@@ -13,18 +13,18 @@ function facIcon(nombre){
   return "book";
 }
 
-// Planes de asesoría de tesis (precios referenciales)
-const PLANES = [
-  { id:"proyecto", n:"Proyecto de Tesis", d:"Plan de investigación listo para aprobación.", precio:"350", pop:false,
-    items:["Planteamiento del problema","Marco teórico y antecedentes","Hipótesis y variables","Metodología y matriz de consistencia","Formato según tu universidad"] },
-  { id:"desarrollo", n:"Desarrollo de Tesis", d:"De los resultados a las conclusiones.", precio:"900", pop:true,
-    items:["Recolección y procesamiento de datos","Análisis estadístico (SPSS / Excel)","Resultados y discusión","Conclusiones y recomendaciones","Informe final completo","Control de originalidad (antiplagio)"] },
-  { id:"integral", n:"Tesis Integral", d:"Acompañamiento de inicio a sustentación.", precio:"1,800", pop:false,
-    items:["Todo lo del Proyecto + Desarrollo","Asesor personal asignado","Levantamiento de observaciones","Preparación para la sustentación","Diapositivas profesionales","Revisión Turnitin incluida"] }
+// Servicios incluidos en toda asesoría de tesis
+const SERVICIOS = [
+  "Asesoría personalizada",
+  "Metodología de investigación",
+  "Procesamiento y análisis de datos",
+  "Corrección y levantamiento de observaciones",
+  "Informes con calidad académica",
+  "Acompañamiento permanente"
 ];
 
 function StepDots({ step }){
-  const labels = [["01","Universidad"],["02","Facultad"],["03","Carrera"],["04","Tu plan"]];
+  const labels = [["01","Universidad"],["02","Facultad"],["03","Carrera"],["04","Tu asesoría"]];
   return (
     <div className="steps">
       {labels.map((l,i)=>(
@@ -57,12 +57,10 @@ function TesisExplorer(){
   const filtered = useMemo(()=>{
     if(!fac) return [];
     const t = q.trim().toLowerCase();
-    return fac.carreras.filter(c=> c.toLowerCase().includes(t));
+    return fac.carreras.filter(c=> c.n.toLowerCase().includes(t));
   },[fac,q]);
 
-  const waMsg = (plan)=> "Hola Grupo ASES 👋, soy estudiante de *"+carrera+"* en "+uni.sigla+" ("+uni.nombre+")."
-    + (plan ? " Me interesa el plan *"+plan.n+"* de Asesoría de Tesis." : " Quiero información sobre Asesoría de Tesis.")
-    + " ¿Me podrían brindar información?";
+  const waMsg = ()=> "Hola Grupo ASES 👋, soy estudiante de *"+carrera.n+"* en "+uni.sigla+" ("+uni.nombre+"). Quiero información sobre Asesoría de Tesis. ¿Me podrían brindar información?";
 
   return (
     <section className="section tesis" id="tesis">
@@ -70,7 +68,7 @@ function TesisExplorer(){
         <div className="sec-head reveal">
           <span className="eyebrow">Asesoría de Tesis · Chiclayo</span>
           <h2>Encuentra tu carrera en 3 pasos.</h2>
-          <p>Elige tu universidad, tu facultad y tu carrera. Te mostramos los planes y te conectamos con un asesor por WhatsApp — con tu información ya lista.</p>
+          <p>Elige tu universidad, tu facultad y tu carrera. Te mostramos el costo de tu asesoría y te conectamos con un asesor por WhatsApp — con tu información ya lista.</p>
         </div>
 
         <div className="explorer reveal">
@@ -82,7 +80,7 @@ function TesisExplorer(){
               <div className="crumbs">
                 {uni && <span className="crumb">{uni.sigla} <button className="x" onClick={reset} title="Cambiar">×</button></span>}
                 {fac && <><span className="crumb-sep">›</span><span className="crumb">{fac.nombre} <button className="x" onClick={()=>{setFac(null);setCarrera(null);setStep(1);}} title="Cambiar">×</button></span></>}
-                {carrera && <><span className="crumb-sep">›</span><span className="crumb">{carrera} <button className="x" onClick={()=>{setCarrera(null);setStep(2);}} title="Cambiar">×</button></span></>}
+                {carrera && <><span className="crumb-sep">›</span><span className="crumb">{carrera.n} <button className="x" onClick={()=>{setCarrera(null);setStep(2);}} title="Cambiar">×</button></span></>}
               </div>
             )}
 
@@ -134,7 +132,7 @@ function TesisExplorer(){
               <div className="stepper-anim" key="s2">
                 <button className="back" onClick={()=>{setFac(null);setStep(1);}}><Icon n="arrowLeft" /> Cambiar facultad</button>
                 <h3 className="step-title">Carreras · {fac.nombre}</h3>
-                <p className="step-desc">Selecciona tu carrera para ver los planes de asesoría.</p>
+                <p className="step-desc">Selecciona tu carrera para ver el costo de asesoría.</p>
                 <div className="car-search">
                   <Icon n="search" />
                   <input placeholder="Busca tu carrera..." value={q} onChange={e=>setQ(e.target.value)} autoFocus />
@@ -142,9 +140,9 @@ function TesisExplorer(){
                 {filtered.length>0 ? (
                   <div className="car-grid stagger">
                     {filtered.map((c,i)=>(
-                      <button className="car-card" key={c} style={{"--uc":uni.color, animationDelay:(i*35)+'ms'}} onClick={()=>pickCar(c)}>
+                      <button className="car-card" key={c.n} style={{"--uc":uni.color, animationDelay:(i*35)+'ms'}} onClick={()=>pickCar(c)}>
                         <span className="cdot"></span>
-                        <span>{c}</span>
+                        <span>{c.n}</span>
                         <span className="pick">Elegir <Icon n="arrow" /></span>
                       </button>
                     ))}
@@ -153,39 +151,32 @@ function TesisExplorer(){
               </div>
             )}
 
-            {/* PASO 4: Resultado + Planes */}
+            {/* PASO 4: Resultado + Costo */}
             {step===3 && carrera && (
               <div className="stepper-anim" key="s3">
                 <button className="back" onClick={()=>{setCarrera(null);setStep(2);}}><Icon n="arrowLeft" /> Cambiar carrera</button>
                 <div className="result-hero">
                   <span className="tag"><Icon n="checkCircle" style={{width:15}}/> ¡Perfecto, te podemos ayudar!</span>
-                  <h3>{carrera}</h3>
+                  <h3>{carrera.n}</h3>
                   <p className="ruta"><b>{uni.sigla}</b> · {fac.nombre} · <span style={{color:'#fff'}}>{uni.nombre}</span></p>
                 </div>
 
-                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:16,flexWrap:'wrap',marginBottom:18}}>
-                  <h3 className="step-title" style={{marginBottom:0}}>Elige tu plan de asesoría</h3>
-                  <a className="btn btn-wa" href={waLink(waMsg(null))} target="_blank" rel="noopener"><Icon n="whatsapp" /> Hablar con un asesor</a>
+                <div className="costo-card">
+                  <div className="costo-left">
+                    <div className="costo-label">Costo de asesoría completa</div>
+                    <div className="costo-price"><small>S/</small> {carrera.precio ? carrera.precio.toLocaleString("es-PE") : "—"}</div>
+                    <div className="costo-note">{carrera.precio ? "Precio fijo · sin costos ocultos" : "Escríbenos para conocer el precio"}</div>
+                    <a className="btn btn-red btn-lg" href={waLink(waMsg())} target="_blank" rel="noopener" style={{marginTop:24}}>
+                      <Icon n="whatsapp" /> Reservar mi asesoría
+                    </a>
+                  </div>
+                  <div className="costo-right">
+                    <div className="costo-inc-title">¿Qué incluye?</div>
+                    <ul className="costo-list">
+                      {SERVICIOS.map(s => <li key={s}><Icon n="check" /> {s}</li>)}
+                    </ul>
+                  </div>
                 </div>
-
-                <div className="planes stagger">
-                  {PLANES.map((p,i)=>(
-                    <div className={"plan"+(p.pop?" pop":"")} key={p.id} style={{animationDelay:(i*70)+'ms'}}>
-                      {p.pop && <span className="badge">Más elegido</span>}
-                      <div className="pn">{p.n}</div>
-                      <div className="pd">{p.d}</div>
-                      <div className="price"><small>Desde S/</small> {p.precio}</div>
-                      <div className="per">Precio referencial · se ajusta a tu caso</div>
-                      <ul>
-                        {p.items.map(it=> <li key={it}><Icon n="check" /> {it}</li>)}
-                      </ul>
-                      <a className={"btn "+(p.pop?"btn-red":"btn-navy")} href={waLink(waMsg(p))} target="_blank" rel="noopener">
-                        <Icon n="whatsapp" /> Solicitar este plan
-                      </a>
-                    </div>
-                  ))}
-                </div>
-                <p className="disclaimer">* Precios referenciales en soles (S/). El monto final depende del alcance, la complejidad y los plazos de tu tesis. Solicita tu cotización exacta sin compromiso.</p>
               </div>
             )}
 
