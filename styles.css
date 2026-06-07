@@ -621,6 +621,7 @@ p {
   animation-play-state: paused;
 }
 .marquee-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -633,7 +634,10 @@ p {
 .marquee-item + .marquee-item::before {
   content: "/";
   color: var(--red);
-  margin-right: -44px;
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  transform: translate(-50%, -50%);
   opacity: 0.6;
 }
 @keyframes slide {
@@ -1817,7 +1821,7 @@ p {
 }
 .foot-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.5fr 1fr 1.2fr;
   gap: 40px;
 }
 .footer p {
