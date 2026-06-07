@@ -1,4 +1,5 @@
-// Iconos de línea (UI funcional). Uso: <Icon n="check" />
+import React from 'react'
+
 const ICON_PATHS = {
   arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
   arrowLeft: '<path d="M19 12H5M11 18l-6-6 6-6"/>',
@@ -27,12 +28,12 @@ const ICON_PATHS = {
   build: '<path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3"/><path d="M9 9h0M9 12h0M9 15h0"/>',
   globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/>',
   star: '<path d="M12 2l3 6.5 7 .9-5 4.8 1.3 7L12 17.8 5.4 21.2 6.7 14l-5-4.8 7-.9L12 2z" fill="currentColor" stroke="none"/>'
-};
-function Icon({ n, style }) {
+}
+
+export function Icon({ n, style }) {
   return React.createElement('svg', {
     viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor',
     strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round',
     style, dangerouslySetInnerHTML: { __html: ICON_PATHS[n] || '' }
-  });
+  })
 }
-window.Icon = Icon;

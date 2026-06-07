@@ -72,6 +72,31 @@ button {
   color: #fff;
 }
 
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.btn:focus-visible {
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+.uni-card:focus-visible,
+.fac-card:focus-visible,
+.car-card:focus-visible {
+  outline-offset: 4px;
+}
+.burger:focus-visible,
+.mm-close:focus-visible,
+.back:focus-visible,
+.x:focus-visible {
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
 h1,
 h2,
 h3,
@@ -638,7 +663,7 @@ p {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('img/proceso-bg.webp');
+  background-image: url('/img/proceso-bg.webp');
   background-size: cover;
   background-position: center;
   opacity: 0.05;
@@ -1487,6 +1512,12 @@ p {
   margin-top: 8px;
   font-weight: 500;
 }
+.costo-desde small:first-child {
+  font-size: 16px;
+  margin-top: 22px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
+}
 .costo-right {
   padding: 40px 36px;
   display: flex;
@@ -1909,7 +1940,7 @@ p {
     transform: scale(1) translateY(0);
   }
 }
-.reveal {
+.animations-ready .reveal {
   opacity: 0;
 }
 .reveal.in {
