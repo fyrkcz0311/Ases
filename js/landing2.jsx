@@ -169,15 +169,6 @@ export function Footer() {
             <a href={waLink("Hola Grupo ASES, necesito marketing y publicidad.")}>Marketing y Publicidad</a>
           </div>
           <div className="foot-col">
-            <h5>Universidades</h5>
-            {UNIVERSIDADES.map(u => (
-              <a href="tesis.html" key={u.id} className="foot-uni-link">
-                <img src={u.logo} alt={u.sigla} className="foot-uni-logo" width="20" height="20" loading="lazy" decoding="async" />
-                {u.sigla}
-              </a>
-            ))}
-          </div>
-          <div className="foot-col">
             <h5>Contacto</h5>
             <a href={waLink("Hola Grupo ASES")} target="_blank" rel="noopener"><Icon n="whatsapp" /> {ASES.waDisplay}</a>
             <a href={"tel:" + ASES.tel}><Icon n="phone" /> {ASES.telDisplay}</a>
