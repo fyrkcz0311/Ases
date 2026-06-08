@@ -91,9 +91,7 @@ export const UNIVERSIDADES = [
       { nombre: "Humanidades", carreras: [
         { n: "Educación Inicial", precio: 0 },
         { n: "Educación Primaria", precio: 0 },
-        { n: "Educación Secundaria – Lengua y Literatura", precio: 0 },
-        { n: "Educación Secundaria – Filosofía y Teología", precio: 0 },
-        { n: "Educación Secundaria – Idiomas (Inglés)", precio: 0 },
+        { n: "Educación Secundaria: Filosofía y Teología", precio: 0 },
         { n: "Comunicación", precio: 0 }
       ]},
       { nombre: "Ingeniería", carreras: [
@@ -121,35 +119,38 @@ export const UNIVERSIDADES = [
     logo: "img/uss.png",
     facultades: [
       { nombre: "Ciencias Empresariales", carreras: [
+        { n: "Gastronomía y Gestion Empresarial del Turismo", precio: 0 },
         { n: "Administración", precio: 0 },
-        { n: "Administración Pública", precio: 0 },
         { n: "Contabilidad", precio: 0 },
-        { n: "Economía", precio: 0 },
-        { n: "Negocios Internacionales", precio: 0 },
-        { n: "Turismo y Negocios", precio: 0 }
+        { n: "Administración de Negocios Internacionales", precio: 0 },
+        { n: "Contabilidad y Finanzas", precio: 0 },
+        { n: "Administración y Emprendimiento", precio: 0 },
+        { n: "Administración y Marketing", precio: 0 }
       ]},
       { nombre: "Derecho y Humanidades", carreras: [
         { n: "Derecho", precio: 0 },
-        { n: "Psicología", precio: 0 },
-        { n: "Ciencias de la Comunicación", precio: 0 },
         { n: "Artes & Diseño Gráfico Empresarial", precio: 0 },
-        { n: "Educación Inicial", precio: 0 }
+        { n: "Ciencias de la Comunicación", precio: 0 }
       ]},
       { nombre: "Ciencias de la Salud", carreras: [
         { n: "Medicina Humana", precio: 0 },
         { n: "Enfermería", precio: 0 },
         { n: "Estomatología", precio: 0 },
-        { n: "Tecnología Médica – Laboratorio Clínico", precio: 0 },
-        { n: "Tecnología Médica – Terapia Física y Rehabilitación", precio: 0 }
+        { n: "Tecnología Médica - Terapía Fisíca y Rehabilitacion", precio: 0 },
+        { n: "Tecnología Médica – Laboratorio Cliníco y Anatomía Patológica ", precio: 0 },
+        { n: "Tecnología Médica - Radiología", precio: 0 },
+        { n: "Psicología", precio: 0 },
+        { n: "Trabajo Social", precio: 0 }
       ]},
       { nombre: "Ingeniería, Arquitectura y Urbanismo", carreras: [
         { n: "Ingeniería Civil", precio: 0 },
         { n: "Ingeniería Industrial", precio: 0 },
         { n: "Ingeniería de Sistemas", precio: 0 },
-        { n: "Ingeniería Económica", precio: 0 },
-        { n: "Ingeniería Agroindustrial y Comercio Exterior", precio: 0 },
+        { n: "Ingeniería de Software", precio: 0 },
+        { n: "Ingeniería Agroindustrial e Industrias Alimentarias", precio: 0 },
         { n: "Ingeniería Mecánica Eléctrica", precio: 0 },
-        { n: "Arquitectura", precio: 0 }
+        { n: "Arquitectura", precio: 0 },
+        { n: "Arquitectura y Diseño de Interiores", precio: 0 }
       ]}
     ]
   },
@@ -162,38 +163,47 @@ export const UNIVERSIDADES = [
     color: "#c8102e",
     logo: "img/utp.png",
     facultades: [
-      { nombre: "Administración y Negocios", carreras: [
+      { nombre: "Negocios", carreras: [
         { n: "Administración de Empresas", precio: 0 },
         { n: "Administración de Negocios Internacionales", precio: 0 },
         { n: "Administración Hotelera y de Turismo", precio: 0 },
-        { n: "Administración de Banca y Finanzas", precio: 0 },
         { n: "Contabilidad", precio: 0 },
-        { n: "Marketing", precio: 0 },
-        { n: "Economía Gerencial", precio: 0 }
+        { n: "Administración y Marketing", precio: 0 },
+        { n: "Economía", precio: 0 }
       ]},
       { nombre: "Ingeniería", carreras: [
         { n: "Ingeniería Industrial", precio: 0 },
         { n: "Ingeniería de Sistemas e Informática", precio: 0 },
         { n: "Ingeniería de Software", precio: 0 },
         { n: "Ingeniería Civil", precio: 0 },
-        { n: "Ingeniería Electrónica", precio: 0 },
-        { n: "Ingeniería Mecánica", precio: 0 },
-        { n: "Ingeniería Mecatrónica", precio: 0 },
-        { n: "Ingeniería de Telecomunicaciones", precio: 0 },
         { n: "Ingeniería de Seguridad Industrial y Minera", precio: 0 },
-        { n: "Ingeniería de Minas", precio: 0 },
-        { n: "Ingeniería Automotriz", precio: 0 },
-        { n: "Ingeniería Aeronáutica", precio: 0 }
+        { n: "Ingeniería Ambiental", precio: 0 },
+        { n: "Ingeniería Empresarial", precio: 0 },
       ]},
-      { nombre: "Derecho y Ciencias Humanas", carreras: [
+      { nombre: "Derecho", carreras: [
         { n: "Derecho", precio: 0 },
+      ]},
+      { nombre: "Ciencias de la Salud", carreras: [
+        { n: "Enfermería", precio: 0 },
+        { n: "Farmacia y Bioquímica", precio: 0 },
+        { n: "Laboratorio Clínico y Anatomía Patalógica", precio: 0 },
+        { n: "Nutrición y Dietética", precio: 0 },
+        { n: "Obstetricia", precio: 0 },
+        { n: "Terapia Física", precio: 0 },
+      ]},
+      { nombre: "Medicina", carreras: [
+        { n: "Medicina", precio: 0 },
+      ]},
+      { nombre: "Psicología", carreras: [
         { n: "Psicología", precio: 0 },
-        { n: "Ciencias de la Comunicación", precio: 0 },
-        { n: "Diseño Digital Publicitario", precio: 0 },
-        { n: "Educación y Gestión del Aprendizaje", precio: 0 }
       ]},
       { nombre: "Arquitectura", carreras: [
-        { n: "Arquitectura", precio: 0 }
+        { n: "Arquitectura", precio: 0 },
+        { n: "Diseño Profesional de Interiores", precio: 0 }
+      ]},
+      { nombre: "Educación", carreras: [
+        { n: "Educación Primaria", precio: 0 },
+        { n: "Educación Secundaria", precio: 0 }
       ]}
     ]
   },
@@ -207,37 +217,37 @@ export const UNIVERSIDADES = [
     logo: "img/ucv.png",
     facultades: [
       { nombre: "Ciencias Empresariales", carreras: [
-        { n: "Administración", precio: 0 },
+        { n: "Administración y Marketing", precio: 0 },
+        { n: "Administración y Negocios Internacionales", precio: 0 },
+        { n: "Administración de Empresas", precio: 0 },
         { n: "Contabilidad", precio: 0 },
-        { n: "Marketing y Dirección de Empresas", precio: 0 },
-        { n: "Negocios Internacionales", precio: 0 },
-        { n: "Administración en Turismo y Hotelería", precio: 0 }
       ]},
       { nombre: "Ciencias de la Salud", carreras: [
-        { n: "Medicina", precio: 0 },
         { n: "Enfermería", precio: 0 },
-        { n: "Estomatología", precio: 0 },
         { n: "Nutrición", precio: 0 },
         { n: "Psicología", precio: 0 },
-        { n: "Tecnología Médica – Terapia Física y Rehabilitación", precio: 0 }
+        { n: "Tecnología Médica – Terapia Física y Rehabilitación", precio: 0 },
+        { n: "Tecnología Médica – Laboratorio Clínico y Anatomía Patológica", precio: 0 }
       ]},
-      { nombre: "Derecho y Humanidades", carreras: [
-        { n: "Derecho", precio: 0 },
-        { n: "Ciencias de la Comunicación", precio: 0 },
-        { n: "Educación Inicial", precio: 0 },
-        { n: "Educación Primaria", precio: 0 },
-        { n: "Traducción e Interpretación", precio: 0 },
-        { n: "Arte y Diseño Gráfico Empresarial", precio: 0 }
+      { nombre: "Derecho y Ciencias Políticas", carreras: [
+        { n: "Derecho", precio: 0 }
       ]},
       { nombre: "Ingeniería y Arquitectura", carreras: [
+        { n: "Arquitectura", precio: 0 },
         { n: "Ingeniería Civil", precio: 0 },
         { n: "Ingeniería Industrial", precio: 0 },
         { n: "Ingeniería de Sistemas", precio: 0 },
-        { n: "Ingeniería Empresarial", precio: 0 },
         { n: "Ingeniería Ambiental", precio: 0 },
         { n: "Ingeniería Mecánica Eléctrica", precio: 0 },
-        { n: "Ingeniería de Minas", precio: 0 },
-        { n: "Arquitectura", precio: 0 }
+        { n: "Ingeniería de Minas", precio: 0 }
+      ]},
+      { nombre: "Humanidades", carreras: [
+        { n: "Ciencias de la Comunicación", precio: 0 },
+        { n: "Ciencias del Deporte", precio: 0 },
+        { n: "Educación Inicial", precio: 0 },
+        { n: "Educación Primaria", precio: 0 },
+        { n: "Traducción e Interpretación", precio: 0 },
+        { n: "Educación en Idiomas Inglés", precio: 0 }
       ]}
     ]
   },
@@ -270,9 +280,10 @@ export const UNIVERSIDADES = [
       ]},
       { nombre: "Ingeniería y Arquitectura", carreras: [
         { n: "Ingeniería Civil", precio: 0 },
-        { n: "Ingeniería de Computación y Sistemas", precio: 0 },
+        { n: "Ingeniería en Ciencia de Datos", precio: 0 },
         { n: "Ingeniería Industrial", precio: 0 },
-        { n: "Ingeniería Electrónica", precio: 0 },
+        { n: "Ingeniería en Ciberseguridad y Análisis Forenses Digital", precio: 0 },
+        { n: "Ingeniería en IA y Róbotica", precio: 0 },
         { n: "Arquitectura", precio: 0 }
       ]},
       { nombre: "Medicina Humana", carreras: [
