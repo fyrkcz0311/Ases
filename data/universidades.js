@@ -263,8 +263,6 @@ export const UNIVERSIDADES = [
       { nombre: "Ciencias Administrativas y Recursos Humanos", carreras: [
         { n: "Administración", precio: 0 },
         { n: "Administración de Negocios Internacionales", precio: 0 },
-        { n: "Marketing", precio: 0 },
-        { n: "Gestión de Recursos Humanos", precio: 0 }
       ]},
       { nombre: "Ciencias Contables, Económicas y Financieras", carreras: [
         { n: "Contabilidad y Finanzas", precio: 0 },
@@ -272,7 +270,6 @@ export const UNIVERSIDADES = [
       ]},
       { nombre: "Ciencias de la Comunicación, Turismo y Psicología", carreras: [
         { n: "Ciencias de la Comunicación", precio: 0 },
-        { n: "Turismo y Hotelería", precio: 0 },
         { n: "Psicología", precio: 0 }
       ]},
       { nombre: "Derecho", carreras: [
@@ -291,10 +288,6 @@ export const UNIVERSIDADES = [
       ]},
       { nombre: "Odontología", carreras: [
         { n: "Odontología", precio: 0 }
-      ]},
-      { nombre: "Obstetricia y Enfermería", carreras: [
-        { n: "Enfermería", precio: 0 },
-        { n: "Obstetricia", precio: 0 }
       ]}
     ]
   }

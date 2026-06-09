@@ -173,7 +173,7 @@ export function TesisExplorer() {
                       </>
                     ) : (
                       <>
-                        <div className="costo-price costo-desde"><small>Desde</small> <small>S/</small>350</div>
+                        <div className="costo-price costo-desde"><small>Desde</small> <small>S/</small>3000</div>
                         <div className="costo-note">Precio exacto según tu avance · sin compromisos</div>
                       </>
                     )}
