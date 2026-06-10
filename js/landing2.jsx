@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Icon } from './icons.jsx'
 import { ASES, waLink, useReveal, useParallax, Logo } from './landing.jsx'
 import { UNIVERSIDADES } from '../data/universidades.js'
@@ -76,6 +76,48 @@ export function NosotrosPreview() {
   )
 }
 
+const MAP_SRC = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6898.2456082076305!2d-79.8424056857272!3d-6.769630134564445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef8c60eaf959%3A0xaa419d47be8b1ee8!2sGrupo%20Ases!5e0!3m2!1ses-419!2sus!4v1780719950163!5m2!1ses-419!2sus"
+
+function LazyMap() {
+  const [mounted, setMounted] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setMounted(true); observer.disconnect() } },
+      { rootMargin: '800px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div ref={containerRef} style={{ position: 'relative', width: '100%', height: '100%' }}>
+      {mounted && (
+        <iframe
+          title="Ubicación Grupo ASES"
+          src={MAP_SRC}
+          width="100%"
+          height="100%"
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          style={{ border: 0, display: 'block', opacity: loaded ? 1 : 0, transition: 'opacity .4s ease' }}
+          allowFullScreen
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      )}
+      {!loaded && (
+        <div style={{ position: 'absolute', inset: 0, background: '#e8e8e8', display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+          <span style={{ color: '#999', fontSize: 14 }}>Cargando mapa...</span>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export function MapSection() {
   useReveal()
   return (
@@ -117,16 +159,7 @@ export function MapSection() {
             </div>
           </div>
           <div className="map-embed reveal">
-            <iframe
-              title="Ubicación Grupo ASES"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6898.2456082076305!2d-79.8424056857272!3d-6.769630134564445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef8c60eaf959%3A0xaa419d47be8b1ee8!2sGrupo%20Ases!5e0!3m2!1ses-419!2sus!4v1780719950163!5m2!1ses-419!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <LazyMap />
           </div>
         </div>
       </div>
