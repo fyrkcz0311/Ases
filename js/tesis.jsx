@@ -24,7 +24,7 @@ const SERVICIOS = [
 ]
 
 function StepDots({ step }) {
-  const labels = [["01", "Universidad"], ["02", "Facultad"], ["03", "Carrera"], ["04", "Tu asesoría"]]
+  const labels = [["01", "Departamento"], ["02", "Universidad"], ["03", "Facultad"], ["04", "Carrera"], ["05", "Tu asesoría"]]
   return (
     <div className="steps">
       {labels.map((l, i) => (
@@ -33,7 +33,7 @@ function StepDots({ step }) {
             <div className="step-n">{i < step ? <Icon n="check" style={{ width: 16 }} /> : l[0]}</div>
             <div className="step-tx"><small>Paso {l[0]}</small><b>{l[1]}</b></div>
           </div>
-          {i < 3 && <div className="step-bar" style={{ "--p": i < step ? 1 : 0 }}></div>}
+          {i < labels.length - 1 && <div className="step-bar" style={{ "--p": i < step ? 1 : 0 }}></div>}
         </React.Fragment>
       ))}
     </div>
@@ -41,17 +41,25 @@ function StepDots({ step }) {
 }
 
 export function TesisExplorer() {
-  const unis = UNIVERSIDADES
+  const departamentos = useMemo(() => {
+    const out = []
+    for (const u of UNIVERSIDADES) if (!out.some(d => d.nombre === u.departamento)) out.push({ nombre: u.departamento, unis: [] })
+    for (const u of UNIVERSIDADES) out.find(d => d.nombre === u.departamento).unis.push(u)
+    return out
+  }, [])
   const [step, setStep] = uS(0)
+  const [dep, setDep] = uS(null)
   const [uni, setUni] = uS(null)
   const [fac, setFac] = uS(null)
   const [carrera, setCarrera] = uS(null)
   const [q, setQ] = uS("")
 
-  function pickUni(u) { setUni(u); setFac(null); setCarrera(null); setStep(1) }
-  function pickFac(f) { setFac(f); setCarrera(null); setQ(""); setStep(2) }
-  function pickCar(c) { setCarrera(c); setStep(3) }
-  function reset() { setUni(null); setFac(null); setCarrera(null); setStep(0) }
+  function pickDep(d) { setDep(d); setUni(null); setFac(null); setCarrera(null); setStep(1) }
+  function pickUni(u) { setUni(u); setFac(null); setCarrera(null); setStep(2) }
+  function pickFac(f) { setFac(f); setCarrera(null); setQ(""); setStep(3) }
+  function pickCar(c) { setCarrera(c); setStep(4) }
+  function reset() { setDep(null); setUni(null); setFac(null); setCarrera(null); setStep(0) }
+  function resetUni() { setUni(null); setFac(null); setCarrera(null); setStep(1) }
 
   const totalCarreras = u => u.facultades.reduce((a, f) => a + f.carreras.length, 0)
   const filtered = useMemo(() => {
@@ -66,29 +74,47 @@ export function TesisExplorer() {
     <section className="section tesis" id="tesis">
       <div className="wrap">
         <div className="sec-head reveal">
-          <span className="eyebrow">Asesoría de Tesis · Chiclayo</span>
-          <h2>Encuentra tu carrera en 3 pasos.</h2>
-          <p>Elige tu universidad, tu facultad y tu carrera. Te mostramos el costo de tu asesoría y te conectamos con un asesor por WhatsApp — con tu información ya lista.</p>
+          <span className="eyebrow">Asesoría de Tesis · Lambayeque y Lima</span>
+          <h2>Encuentra tu carrera en 4 pasos.</h2>
+          <p>Elige tu departamento, tu universidad, tu facultad y tu carrera. Te mostramos el costo de tu asesoría y te conectamos con un asesor por WhatsApp — con tu información ya lista.</p>
         </div>
 
         <div className="explorer reveal">
           <StepDots step={step} />
-          <div className="explorer-body">
+          <div className={"explorer-body" + (step === 0 ? " compact" : "")}>
 
-            {(uni || fac || carrera) && (
+            {(dep || uni || fac || carrera) && (
               <div className="crumbs">
-                {uni && <span className="crumb">{uni.sigla} <button className="x" onClick={reset} title="Cambiar">×</button></span>}
-                {fac && <><span className="crumb-sep">›</span><span className="crumb">{fac.nombre} <button className="x" onClick={() => { setFac(null); setCarrera(null); setStep(1) }} title="Cambiar">×</button></span></>}
-                {carrera && <><span className="crumb-sep">›</span><span className="crumb">{carrera.n} <button className="x" onClick={() => { setCarrera(null); setStep(2) }} title="Cambiar">×</button></span></>}
+                {dep && <span className="crumb">{dep.nombre} <button className="x" onClick={reset} title="Cambiar">×</button></span>}
+                {uni && <><span className="crumb-sep">›</span><span className="crumb">{uni.sigla} <button className="x" onClick={resetUni} title="Cambiar">×</button></span></>}
+                {fac && <><span className="crumb-sep">›</span><span className="crumb">{fac.nombre} <button className="x" onClick={() => { setFac(null); setCarrera(null); setStep(2) }} title="Cambiar">×</button></span></>}
+                {carrera && <><span className="crumb-sep">›</span><span className="crumb">{carrera.n} <button className="x" onClick={() => { setCarrera(null); setStep(3) }} title="Cambiar">×</button></span></>}
               </div>
             )}
 
             {step === 0 && (
               <div className="stepper-anim" key="s0">
+                <h3 className="step-title">¿En qué departamento estudias?</h3>
+                <p className="step-desc">Elige tu departamento para ver solo las universidades de tu zona.</p>
+                <div className="fac-grid stagger">
+                  {departamentos.map((d, i) => (
+                    <button className="fac-card" key={d.nombre} style={{ animationDelay: (i * 55) + 'ms' }} onClick={() => pickDep(d)}>
+                      <div className="fac-ic"><Icon n="pin" /></div>
+                      <div className="fc-tx"><b>{d.nombre}</b><small>{d.unis.length} universidades</small></div>
+                      <div className="arr"><Icon n="arrow" /></div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {step === 1 && dep && (
+              <div className="stepper-anim" key="s1">
+                <button className="back" onClick={reset}><Icon n="arrowLeft" /> Cambiar departamento</button>
                 <h3 className="step-title">¿En qué universidad estudias?</h3>
-                <p className="step-desc">Trabajamos con las principales universidades de Chiclayo.</p>
+                <p className="step-desc">Trabajamos con las principales universidades de {dep.nombre}.</p>
                 <div className="uni-grid stagger">
-                  {unis.map((u, i) => (
+                  {dep.unis.map((u, i) => (
                     <button className="uni-card" key={u.id} style={{ "--uc": u.color, animationDelay: (i * 55) + 'ms' }} onClick={() => pickUni(u)}>
                       <div className="uni-seal">
                         <img src={u.logo} alt={u.sigla} className="uni-seal-img" width="64" height="64" loading="lazy" decoding="async" />
@@ -107,9 +133,9 @@ export function TesisExplorer() {
               </div>
             )}
 
-            {step === 1 && uni && (
-              <div className="stepper-anim" key="s1">
-                <button className="back" onClick={reset}><Icon n="arrowLeft" /> Cambiar universidad</button>
+            {step === 2 && uni && (
+              <div className="stepper-anim" key="s2">
+                <button className="back" onClick={resetUni}><Icon n="arrowLeft" /> Cambiar universidad</button>
                 <h3 className="step-title">Facultades de {uni.sigla}</h3>
                 <p className="step-desc">Elige la facultad de tu carrera.</p>
                 <div className="fac-grid stagger">
@@ -124,9 +150,9 @@ export function TesisExplorer() {
               </div>
             )}
 
-            {step === 2 && fac && (
-              <div className="stepper-anim" key="s2">
-                <button className="back" onClick={() => { setFac(null); setStep(1) }}><Icon n="arrowLeft" /> Cambiar facultad</button>
+            {step === 3 && fac && (
+              <div className="stepper-anim" key="s3">
+                <button className="back" onClick={() => { setFac(null); setStep(2) }}><Icon n="arrowLeft" /> Cambiar facultad</button>
                 <h3 className="step-title">Carreras · {fac.nombre}</h3>
                 <p className="step-desc">Selecciona tu carrera para ver el costo de asesoría.</p>
                 <div className="car-search">
@@ -154,9 +180,9 @@ export function TesisExplorer() {
               </div>
             )}
 
-            {step === 3 && carrera && (
-              <div className="stepper-anim" key="s3">
-                <button className="back" onClick={() => { setCarrera(null); setStep(2) }}><Icon n="arrowLeft" /> Cambiar carrera</button>
+            {step === 4 && carrera && (
+              <div className="stepper-anim" key="s4">
+                <button className="back" onClick={() => { setCarrera(null); setStep(3) }}><Icon n="arrowLeft" /> Cambiar carrera</button>
                 <div className="result-hero">
                   <span className="tag"><Icon n="checkCircle" style={{ width: 15 }} /> ¡Perfecto, te podemos ayudar!</span>
                   <h3>{carrera.n}</h3>

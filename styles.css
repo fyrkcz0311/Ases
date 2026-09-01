@@ -1081,6 +1081,14 @@ p {
   min-height: 430px;
   position: relative;
 }
+/* paso 1 (departamento): solo 2 tarjetas, sin alto mínimo */
+.explorer-body.compact {
+  min-height: 0;
+  padding-bottom: 34px;
+}
+.explorer-body.compact .fac-card {
+  padding: 24px 22px;
+}
 
 /* breadcrumb selección */
 .crumbs {

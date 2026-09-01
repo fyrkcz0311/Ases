@@ -1,4 +1,4 @@
-// Banco de datos: Universidades de Chiclayo, sus facultades y carreras.
+// Banco de datos: Universidades de Lambayeque y Lima, sus facultades y carreras.
 // Para cambiar precios: edita el campo "precio" de cada carrera (en soles).
 export const UNIVERSIDADES = [
   {
@@ -7,6 +7,7 @@ export const UNIVERSIDADES = [
     nombre: "Univ. Nacional Pedro Ruiz Gallo",
     tipo: "Pública",
     ciudad: "Lambayeque",
+    departamento: "Lambayeque",
     color: "#1f4e8c",
     logo: "img/unprg.png",
     facultades: [
@@ -76,6 +77,7 @@ export const UNIVERSIDADES = [
     nombre: "Univ. Católica Santo Toribio de Mogrovejo",
     tipo: "Privada",
     ciudad: "Chiclayo",
+    departamento: "Lambayeque",
     color: "#7a1f2b",
     logo: "img/usat.jpg",
     facultades: [
@@ -115,6 +117,7 @@ export const UNIVERSIDADES = [
     nombre: "Univ. Señor de Sipán",
     tipo: "Privada",
     ciudad: "Pimentel · Chiclayo",
+    departamento: "Lambayeque",
     color: "#0a2a66",
     logo: "img/uss.png",
     facultades: [
@@ -160,6 +163,7 @@ export const UNIVERSIDADES = [
     nombre: "Univ. Tecnológica del Perú",
     tipo: "Privada",
     ciudad: "Chiclayo",
+    departamento: "Lambayeque",
     color: "#c8102e",
     logo: "img/utp.png",
     facultades: [
@@ -213,6 +217,7 @@ export const UNIVERSIDADES = [
     nombre: "Univ. César Vallejo",
     tipo: "Privada",
     ciudad: "Chiclayo",
+    departamento: "Lambayeque",
     color: "#9c1d2b",
     logo: "img/ucv.png",
     facultades: [
@@ -257,6 +262,7 @@ export const UNIVERSIDADES = [
     nombre: "Univ. de San Martín de Porres",
     tipo: "Privada",
     ciudad: "Chiclayo",
+    departamento: "Lambayeque",
     color: "#13294b",
     logo: "img/usmp.png",
     facultades: [
@@ -297,6 +303,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. Nacional Mayor de San Marcos",
   tipo: "Pública",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#8b1e2d",
   logo: "img/unmsm.png",
   facultades: [
@@ -478,6 +485,7 @@ export const UNIVERSIDADES = [
   nombre: "Pontificia Univ. Católica del Perú",
   tipo: "Privada",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#003f7d",
   logo: "img/pucp.png",
   facultades: [
@@ -609,6 +617,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. Peruana Cayetano Heredia",
   tipo: "Privada",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#007a5e",
   logo: "img/upch.png",
   facultades: [
@@ -679,6 +688,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. Nacional de Ingeniería",
   tipo: "Pública",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#8b0000",
   logo: "img/uni.png",
   facultades: [
@@ -779,6 +789,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. de Lima",
   tipo: "Privada",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#ff6a00",
   logo: "img/ulima.png",
   facultades: [
@@ -834,6 +845,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. del Pacífico",
   tipo: "Privada",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#7b001c",
   logo: "img/up.png",
   facultades: [
@@ -882,6 +894,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. Nacional Agraria La Molina",
   tipo: "Pública",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#2f6b2f",
   logo: "img/unalm.png",
   facultades: [
@@ -945,6 +958,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. Nacional Federico Villarreal",
   tipo: "Pública",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#003b73",
   logo: "img/unfv.png",
   facultades: [
@@ -1099,6 +1113,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. de Ingeniería y Tecnología",
   tipo: "Privada",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#00a3a3",
   logo: "img/utec.png",
   facultades: [
@@ -1146,6 +1161,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. San Ignacio de Loyola",
   tipo: "Privada",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#004b8d",
   logo: "img/usil.png",
   facultades: [
@@ -1235,6 +1251,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. Ricardo Palma",
   tipo: "Privada",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#006b3f",
   logo: "img/urp.png",
   facultades: [
@@ -1304,6 +1321,7 @@ export const UNIVERSIDADES = [
   nombre: "Univ. de San Martín de Porres",
   tipo: "Privada",
   ciudad: "Lima",
+  departamento: "Lima",
   color: "#13294b",
   logo: "img/usmp.png",
   facultades: [
