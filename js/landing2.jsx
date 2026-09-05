@@ -211,7 +211,7 @@ export function Footer() {
         </div>
         <div className="foot-bottom">
           <span>© {new Date().getFullYear()} Grupo ASES - Consorcio de Asesores. Todos los derechos reservados.</span>
-          <span>Hecho con compromiso en Chiclayo, Peru</span>
+          <span>Hecho por Tim Bando</span>
         </div>
       </div>
     </footer>
